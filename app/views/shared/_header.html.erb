@@ -3,6 +3,11 @@
     <li class="nav-item">
       <%= link_to "Home", root_path, class: 'nav-link active' %>
     </li>
+    <% if can? :read, SecretCode %>
+      <li class="nav-item">
+        <%= link_to "Secret Codes", secret_codes_path, class: 'nav-link' %>
+      </li>
+    <% end %>
   </ul>
   <ul class="navbar-nav ml-auto">
     <% if user_signed_in? %>

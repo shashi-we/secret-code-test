@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Secret Codes</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h5 class="font-weight-bold">Select number to generate codes</h5>
+        </div>
+        <div class="col-md-4">
+          <%= form_tag generate_secret_codes_path, method: :post do %>
+            <div class="form-group">
+              <%= select_tag :quantity, options_for_select([1, 10, 20, 50, 100], 10), {class: "form-control"} %>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Generate Codes", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>User</th>
+            <th colspan="3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @secret_codes.each do |secret_code| %>
+            <tr>
+              <td><%= secret_code.code %></td>
+              <td><%= secret_code.try(:user).try(:email) %></td>
+              <td><%= link_to 'Destroy', secret_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
