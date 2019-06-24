@@ -7,3 +7,9 @@
 label{
   margin-bottom: 0.2rem;
 }
+.has-error input {
+  border-color: red;
+}
+.has-error .help-block {
+  color: red;
+}
